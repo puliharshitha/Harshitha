@@ -1,0 +1,468 @@
+<title>Harshitha Puli</title>
+<meta name="description" content="Product design portfolio in sage, pine, and cream — calm, considered UX/UI case studies.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+  :root{
+    --cream:#fff8ef;
+    --cream-deep:#ffe2c9;
+    --card:#ffffff;
+    --sage:#ff6b57;
+    --sage-soft:#ffe0da;
+    --sage-line:#ffb3a7;
+    --pine:#20203a;
+    --pine-mid:#57546f;
+    --line:rgba(32,32,58,0.15);
+    --f-serif:'Space Grotesk', sans-serif;
+    --f-body:'DM Sans', -apple-system, Helvetica, Arial, sans-serif;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--pine);
+    font-family:var(--f-body);
+  }
+  ::selection{ background:var(--sage); color:var(--pine); }
+  a{ color:inherit; }
+
+  .wrap{ max-width:1160px; margin:0 auto; padding-inline:22px; }
+  @media (min-width:760px){ .wrap{ padding-inline:52px; } }
+
+  /* ---------------- botanical sprig, reused as ornament ---------------- */
+  .sprig{ display:inline-block; vertical-align:middle; }
+  .sprig path{ fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; }
+  .sprig circle{ fill:currentColor; stroke:none; }
+
+  .branch-rule{ display:flex; align-items:center; gap:14px; color:var(--sage); }
+  .branch-rule .line{ flex:1; height:1px; background:var(--line); }
+
+  /* ---------------- top bar ---------------- */
+  .topbar{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:24px 0;
+    font-size:13px; letter-spacing:0.03em;
+  }
+  .topbar .brand{ font-family:var(--f-serif); font-style:italic; font-size:18px; }
+  .topbar nav{ display:none; gap:26px; }
+  .topbar nav a{ text-decoration:none; }
+  .topbar nav a:hover{ color:var(--sage); }
+  @media (min-width:640px){ .topbar nav{ display:flex; } }
+
+  /* ---------------- hero ---------------- */
+  .hero{ position:relative; padding:40px 0 80px 0; overflow:hidden; }
+  .leaf-shape{
+    position:absolute; z-index:0;
+    background:var(--sage-soft);
+    border-radius:58% 42% 63% 37% / 41% 55% 45% 59%;
+  }
+  .leaf-shape.l1{ width:460px; height:460px; top:-140px; right:-140px; }
+  .leaf-shape.l2{ width:220px; height:220px; bottom:-60px; left:-80px; background:var(--cream-deep); border-radius:45% 55% 40% 60% / 55% 45% 60% 40%; }
+
+  .eyebrow{
+    position:relative; z-index:1;
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:12.5px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--pine-mid);
+    margin-bottom:26px;
+  }
+
+  h1.headline{
+    position:relative; z-index:1;
+    font-family:var(--f-serif); font-style:italic; font-weight:500;
+    font-size:clamp(48px, 9vw, 108px);
+    line-height:0.98;
+    margin:0 0 28px 0;
+    letter-spacing:-0.01em;
+    text-wrap:balance;
+  }
+
+  .hero-grid{ position:relative; z-index:1; display:grid; grid-template-columns:1fr; gap:26px; }
+  @media (min-width:820px){ .hero-grid{ grid-template-columns:1.1fr 0.9fr; gap:60px; align-items:start; } }
+
+  .tagline{
+    font-family:var(--f-serif); font-weight:400; font-size:clamp(21px,2.8vw,28px);
+    line-height:1.4; max-width:19ch; margin:0;
+    color:var(--pine-mid);
+    text-wrap:balance;
+  }
+
+  .hero-sub{ font-size:15.5px; line-height:1.75; color:var(--pine-mid); max-width:48ch; margin:0 0 30px 0; }
+  .cta-row{ display:flex; gap:12px; flex-wrap:wrap; }
+  .btn{
+    font-size:13px; letter-spacing:0.02em;
+    text-decoration:none; padding:14px 24px; border-radius:999px;
+    display:inline-flex; align-items:center; gap:8px;
+    border:1.4px solid var(--pine);
+    transition:transform .15s ease, background .2s ease, color .2s ease;
+  }
+  .btn.solid{ background:var(--pine); color:var(--cream); }
+  .btn.solid:hover{ background:var(--pine-mid); transform:translateY(-2px); }
+  .btn.ghost:hover{ background:var(--sage-soft); border-color:var(--sage); transform:translateY(-2px); }
+
+  /* ---------------- section head ---------------- */
+  section.block{ padding:66px 0; border-top:1px solid var(--line); }
+  .sec-head{ margin-bottom:36px; }
+  .sec-head .eyebrow{ margin-bottom:10px; }
+  .sec-head h2{ font-family:var(--f-serif); font-style:italic; font-weight:500; font-size:clamp(28px,4.2vw,44px); margin:0; }
+
+  /* ---------------- about ---------------- */
+  .about-grid{ display:grid; grid-template-columns:1fr; gap:30px; }
+  @media (min-width:780px){ .about-grid{ grid-template-columns:1.2fr 1fr; gap:60px; } }
+  .about-text{ font-family:var(--f-serif); font-size:clamp(20px,2.5vw,25px); line-height:1.55; max-width:32ch; color:var(--pine); text-wrap:balance; }
+  .about-list{ font-size:13.5px; line-height:2.4; color:var(--pine-mid); }
+  .about-list b{ color:var(--pine); font-weight:600; }
+  .about-list .sprig{ color:var(--sage); margin-right:9px; width:15px; height:15px; }
+
+  /* ---------------- work ---------------- */
+  .project{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:22px;
+    margin-bottom:34px;
+    overflow:hidden;
+    transition:box-shadow .25s ease, transform .25s ease;
+  }
+  .project:hover{ box-shadow:0 20px 38px -26px rgba(38,54,43,0.35); transform:translateY(-3px); }
+
+  .proj-head{ display:flex; justify-content:space-between; align-items:flex-start; gap:16px; padding:30px 30px 18px 30px; flex-wrap:wrap; }
+  .proj-tag{
+    display:inline-block; font-size:11px; letter-spacing:0.05em; text-transform:uppercase;
+    background:var(--sage-soft); color:var(--pine-mid);
+    padding:5px 12px; border-radius:999px; margin-bottom:12px;
+  }
+  .proj-title{ font-family:var(--f-serif); font-style:italic; font-weight:500; font-size:clamp(26px,4vw,38px); margin:0; }
+  .proj-stack{ font-size:11px; letter-spacing:0.03em; text-transform:uppercase; color:var(--pine-mid); text-align:right; line-height:1.8; max-width:220px; }
+
+  .proj-body{ display:grid; grid-template-columns:1fr; gap:0; padding:0 30px 32px 30px; }
+  @media (min-width:880px){ .proj-body{ grid-template-columns:1fr 1fr; gap:36px; } }
+
+  .mock{ border:1px solid var(--line); background:var(--cream); border-radius:14px; padding:14px; min-height:220px; }
+  .mock-chrome{ display:flex; gap:5px; margin-bottom:11px; }
+  .mock-chrome span{ width:7px; height:7px; border-radius:50%; background:var(--sage-line); }
+
+  .mock-shop{ display:grid; grid-template-columns:44px 1fr; gap:10px; }
+  .mock-shop .rail div{ height:7px; background:var(--sage-soft); margin-bottom:7px; border-radius:3px; }
+  .mock-shop .rail div:nth-child(2){ width:70%; }
+  .mock-shop .grid2{ display:grid; grid-template-columns:repeat(3,1fr); gap:7px; }
+  .mock-shop .sw{ aspect-ratio:1; border-radius:6px; }
+  .sw1{ background:#c7d3b4; } .sw2{ background:#e2d6b2; } .sw3{ background:#aebd98; }
+  .sw4{ background:var(--pine-mid); } .sw5{ background:#e8dfc8; } .sw6{ background:var(--sage); }
+  .mock-cta{ margin-top:10px; display:inline-block; background:var(--pine); color:var(--cream); font-size:9.5px; padding:6px 11px; border-radius:999px; }
+
+  .mock-arch .hero-block{ height:60px; background:linear-gradient(120deg,var(--pine-mid),var(--sage)); border-radius:10px; margin-bottom:9px; }
+  .mock-arch .gal{ display:grid; grid-template-columns:repeat(3,1fr); gap:6px; }
+  .mock-arch .gal div{ aspect-ratio:4/3; border-radius:8px; }
+  .g1{ background:#d8cead; } .g2{ background:#9fb08a; } .g3{ background:#c4b998; }
+
+  .mock-edu .navrow{ display:flex; gap:8px; margin-bottom:11px; }
+  .mock-edu .navrow span{ height:6px; width:24px; background:var(--sage-soft); border-radius:3px; }
+  .mock-edu .cards{ display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:14px; }
+  .mock-edu .card{ border:1px solid var(--line); border-radius:8px; padding:7px; background:var(--card); }
+  .mock-edu .card .stripe{ height:5px; width:60%; border-radius:3px; margin-bottom:6px; }
+  .mock-edu .stripe.a{ background:var(--sage); } .mock-edu .stripe.b{ background:var(--pine-mid); }
+  .mock-edu .card .ln{ height:4px; background:var(--sage-soft); border-radius:3px; margin-bottom:4px; }
+  .stepper{ display:flex; align-items:center; gap:6px; font-size:10.5px; color:var(--pine-mid); }
+  .stepper .dot{ width:9px; height:9px; border-radius:50%; background:var(--pine); position:relative; }
+  .stepper .dot.cut{ background:var(--sage-line); }
+  .stepper .dot.cut::after{ content:""; position:absolute; left:-2px; top:3px; width:13px; height:1.4px; background:var(--sage); transform:rotate(-20deg); }
+
+  .proj-copy{ padding-top:22px; }
+  .proj-brief{ font-size:14.5px; line-height:1.65; margin:0 0 16px 0; color:var(--pine); }
+  ul.approach{ list-style:none; margin:0 0 20px 0; padding:0; }
+  ul.approach li{ position:relative; padding-left:22px; font-size:13px; line-height:1.6; color:var(--pine-mid); margin-bottom:8px; }
+  ul.approach li .sprig{ position:absolute; left:0; top:2px; width:14px; height:14px; color:var(--sage); }
+
+  .proj-metrics{ display:flex; gap:26px; border-top:1px solid var(--line); padding-top:16px; flex-wrap:wrap; }
+  .proj-metrics .n{ font-family:var(--f-serif); font-style:italic; font-weight:500; font-size:22px; color:var(--pine); }
+  .proj-metrics .l{ font-size:10px; text-transform:uppercase; color:var(--pine-mid); letter-spacing:0.03em; margin-top:2px; }
+
+  /* ---------------- capabilities ---------------- */
+  .cap-grid{ display:grid; grid-template-columns:1fr; gap:14px; }
+  @media (min-width:640px){ .cap-grid{ grid-template-columns:1fr 1fr; } }
+  @media (min-width:980px){ .cap-grid{ grid-template-columns:repeat(4,1fr); } }
+  .cap-cell{ border:1px solid var(--line); border-radius:18px; padding:24px 22px; background:var(--tint); }
+  .cap-cell:nth-child(1){ --tint: var(--card); }
+  .cap-cell:nth-child(2){ --tint: var(--sage-soft); }
+  .cap-cell:nth-child(3){ --tint: var(--cream-deep); }
+  .cap-cell:nth-child(4){ --tint: var(--card); }
+  .cap-cell h3{ font-family:var(--f-serif); font-style:italic; font-weight:500; font-size:19px; margin:0 0 10px 0; }
+  .cap-cell p{ font-size:13px; line-height:1.7; color:var(--pine-mid); margin:0; }
+
+  /* ---------------- contact ---------------- */
+  .contact-band{
+    margin-top:20px;
+    background:var(--pine);
+    color:var(--cream);
+    border-radius:28px;
+    padding:60px 34px;
+    position:relative;
+    overflow:hidden;
+  }
+  .contact-band .leaf-shape{ background:rgba(244,239,226,0.06); }
+  .contact-band .leaf-shape.l3{ width:360px; height:360px; top:-120px; left:-100px; border-radius:50% 50% 45% 55% / 55% 45% 55% 45%; }
+  .contact-band h2{ position:relative; font-family:var(--f-serif); font-style:italic; font-weight:500; font-size:clamp(32px,5.4vw,58px); margin:0 0 20px 0; max-width:14ch; text-wrap:balance; }
+  .contact-band p.lead{ position:relative; font-size:15.5px; line-height:1.7; max-width:46ch; opacity:0.86; margin:0 0 34px 0; }
+  .contact-grid{ position:relative; display:grid; grid-template-columns:1fr; gap:20px; }
+  @media (min-width:640px){ .contact-grid{ grid-template-columns:repeat(3,1fr); } }
+  .contact-grid .lab{ font-size:11px; text-transform:uppercase; letter-spacing:0.06em; opacity:0.65; margin-bottom:6px; }
+  .contact-grid a{ font-size:15px; text-decoration:none; border-bottom:1.3px solid var(--sage); padding-bottom:2px; }
+
+  footer{ padding:30px 0 46px 0; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
+    font-size:11px; letter-spacing:0.03em; color:var(--pine-mid); }
+
+  h1,h2,h3{ text-wrap:balance; }
+
+  /* PLAYFUL CREATIVE DIRECTION — bold color, stickers, and tactile cards */
+  body{background:#fff8ef;background-image:radial-gradient(#e8d9d0 0.7px,transparent 0.7px);background-size:17px 17px;}
+  .wrap{max-width:1240px}
+  .topbar{padding:22px 0;border-bottom:1px solid rgba(32,32,58,.12)}
+  .topbar .brand{font-family:var(--f-body);font-style:normal;font-weight:800;letter-spacing:-.06em;font-size:20px}
+  .topbar .brand:after{content:'✳';display:inline-block;color:#ff6b57;margin-left:5px;transform:rotate(-12deg)}
+  .topbar nav a{font-size:12px;font-weight:700;padding:9px 13px;border-radius:99px;transition:background .2s,transform .2s}
+  .topbar nav a:hover{color:var(--pine);background:#ffe0da;transform:rotate(-3deg)}
+  .hero{padding:78px 0 90px}
+  .leaf-shape.l1{width:420px;height:420px;top:-80px;right:-130px;background:#d8d4ff;border-radius:47% 53% 40% 60% / 48% 38% 62% 52%;transform:rotate(18deg)}
+  .leaf-shape.l2{width:230px;height:230px;bottom:-90px;left:-100px;background:#ffdc70;border-radius:50%;}
+  .eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;background:#d9f4dc;padding:9px 13px;border-radius:999px;width:max-content;color:#20203a}
+  h1.headline{font-family:var(--f-body);font-style:normal;font-weight:800;letter-spacing:-.085em;font-size:clamp(64px,12vw,142px);line-height:.84;margin-bottom:35px;max-width:900px}
+  h1.headline:after{content:'✳';display:inline-block;color:#ff6b57;font-size:.42em;vertical-align:top;margin:0 0 0 15px;transform:rotate(13deg);animation:spin-sticker 18s linear infinite}
+  .tagline{font-family:var(--f-body);font-weight:700;font-size:clamp(25px,3.4vw,39px);letter-spacing:-.055em;line-height:1.15;color:#ff6b57;max-width:14ch}
+  .hero-sub{font-size:16px;line-height:1.8;max-width:48ch}
+  .btn{font-weight:700;border-radius:13px;padding:15px 21px;border-width:2px}
+  .btn.solid{background:#20203a;color:#fff8ef;border-color:#20203a;box-shadow:4px 4px 0 #ffb3a7}
+  .btn.solid:hover{background:#ff6b57;border-color:#ff6b57;color:#20203a;transform:translate(2px,2px);box-shadow:2px 2px 0 #20203a}
+  .btn.ghost{background:#fff8ef}
+  .btn.ghost:hover{background:#ffdc70;border-color:#20203a}
+  section.block{padding:82px 0;border-top:2px solid rgba(32,32,58,.12)}
+  .sec-head .eyebrow{margin-bottom:16px}
+  .sec-head h2{font-family:var(--f-body);font-style:normal;font-weight:800;letter-spacing:-.06em;font-size:clamp(35px,5vw,58px)}
+  .about-text{font-family:var(--f-body);font-weight:600;letter-spacing:-.04em;font-size:clamp(23px,3vw,32px);line-height:1.35}
+  .about-list{font-size:14px}
+  .about-list b{background:#ffdc70;padding:2px 5px;border-radius:5px}
+  .project{border:2px solid #20203a;border-radius:26px;background:#fff;box-shadow:7px 7px 0 #d8d4ff;margin-bottom:42px;transition:transform .25s ease,box-shadow .25s ease}
+  .project:hover{transform:translate(-3px,-4px) rotate(-.25deg);box-shadow:12px 12px 0 #ffb3a7}
+  .proj-head{padding:32px 32px 18px}
+  .proj-tag{background:#d9f4dc;color:#20203a;font-family:'DM Mono',monospace;font-weight:500;border:1px solid #20203a}
+  .proj-title{font-family:var(--f-body);font-style:normal;font-weight:800;letter-spacing:-.06em;font-size:clamp(31px,4vw,44px)}
+  .proj-stack{font-family:'DM Mono',monospace;font-size:10px}
+  .proj-body{padding:0 32px 34px;gap:30px}
+  .mock{border:2px solid #20203a;border-radius:18px;background:#fff8ef;padding:17px;min-height:250px;transition:transform .35s ease}
+  .project:hover .mock{transform:rotate(1deg) scale(1.015)}
+  .mock-chrome span:nth-child(1){background:#ff6b57}.mock-chrome span:nth-child(2){background:#ffdc70}.mock-chrome span:nth-child(3){background:#9bd8a5}
+  .sw1{background:#ffb3a7}.sw2{background:#ffdc70}.sw3{background:#d8d4ff}.sw4{background:#20203a}.sw5{background:#b9e6dc}.sw6{background:#ff8b75}
+  .mock-cta{background:#ff6b57;color:#20203a;font-weight:700}
+  .mock-arch .hero-block{background:linear-gradient(120deg,#ff6b57,#ffdc70)}
+  .g1{background:#d8d4ff}.g2{background:#ffb3a7}.g3{background:#9bd8a5}
+  .proj-brief{font-size:15px;line-height:1.75}
+  .proj-metrics .n{font-family:var(--f-body);font-style:normal;font-weight:800;letter-spacing:-.05em;color:#ff6b57}
+  .cap-cell{border:2px solid #20203a;border-radius:22px;box-shadow:4px 4px 0 #d8d4ff;transition:transform .2s,box-shadow .2s}
+  .cap-cell:hover{transform:translate(-2px,-3px) rotate(-1deg);box-shadow:7px 7px 0 #ffb3a7}
+  .cap-cell h3{font-family:var(--f-body);font-style:normal;font-weight:800;letter-spacing:-.04em}
+  .contact-band{background:#20203a;border:2px solid #20203a;border-radius:30px;box-shadow:8px 8px 0 #ffb3a7}
+  .contact-band h2{font-family:var(--f-body);font-style:normal;font-weight:800;letter-spacing:-.06em}
+  .contact-band .leaf-shape.l3{background:#514d77;opacity:.7}
+  .contact-grid a{border-color:#ffdc70}
+  footer{font-family:'DM Mono',monospace;font-size:10px}
+  @keyframes spin-sticker{to{transform:rotate(373deg)}}
+  @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+  @media(max-width:640px){.hero{padding:52px 0 65px}.proj-head{padding:24px 22px 14px}.proj-body{padding:0 22px 25px}.proj-stack{text-align:left}.project{box-shadow:5px 5px 0 #d8d4ff}}
+</style>
+
+<div class="wrap">
+
+  <div class="topbar">
+    <div class="brand">Harshitha Puli</div>
+    <nav>
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+
+  <section class="hero">
+    <div class="leaf-shape l1"></div>
+    <div class="leaf-shape l2"></div>
+
+    <span class="eyebrow">
+      <svg class="sprig" width="16" height="16" viewBox="0 0 24 24"><path d="M12 22 V6" /><path d="M12 10 C7 10 5 6 5 3 C9 3 12 6 12 10 Z" /><path d="M12 15 C17 15 19 11 19 8 C15 8 12 11 12 15 Z" /></svg>
+      Product design portfolio
+    </span>
+
+    <h1 class="headline">Harshitha Puli</h1>
+
+    <div class="hero-grid">
+      <p class="tagline">Interfaces grown from research — not guesswork.</p>
+      <div>
+        <p class="hero-sub">A product designer with a computer science background. I take a brief through research, structure, and interface design, then stay close to the build — so what ships is what was drawn, checked against real performance and accessibility numbers.</p>
+        <div class="cta-row">
+          <a class="btn solid" href="#work">See the work</a>
+          <a class="btn ghost" href="mailto:puliharshitha25@gmail.com">Say hello</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="about">
+    <div class="sec-head">
+      <span class="eyebrow"><svg class="sprig" width="14" height="14" viewBox="0 0 24 24"><path d="M12 22 V6" /><path d="M12 10 C7 10 5 6 5 3 C9 3 12 6 12 10 Z" /></svg>How I work</span>
+      <h2>A steady hand, start to finish</h2>
+    </div>
+    <div class="about-grid">
+      <p class="about-text">I studied computer science. I practice as a designer. The best interfaces feel inevitable — quiet, considered, and built to last.</p>
+      <div class="about-list">
+        <div><svg class="sprig" width="15" height="15" viewBox="0 0 24 24"><path d="M12 22 V6" /><path d="M12 10 C7 10 5 6 5 3 C9 3 12 6 12 10 Z" /></svg><b>Research</b> — interviews, journey maps, usability tests</div>
+        <div><svg class="sprig" width="15" height="15" viewBox="0 0 24 24"><path d="M12 22 V6" /><path d="M12 10 C7 10 5 6 5 3 C9 3 12 6 12 10 Z" /></svg><b>Structure</b> — IA, user flows, wireframes</div>
+        <div><svg class="sprig" width="15" height="15" viewBox="0 0 24 24"><path d="M12 22 V6" /><path d="M12 10 C7 10 5 6 5 3 C9 3 12 6 12 10 Z" /></svg><b>Surface</b> — hi-fi UI, design systems</div>
+        <div><svg class="sprig" width="15" height="15" viewBox="0 0 24 24"><path d="M12 22 V6" /><path d="M12 10 C7 10 5 6 5 3 C9 3 12 6 12 10 Z" /></svg><b>Build</b> — React, TypeScript, REST APIs</div>
+        <div><svg class="sprig" width="15" height="15" viewBox="0 0 24 24"><path d="M12 22 V6" /><path d="M12 10 C7 10 5 6 5 3 C9 3 12 6 12 10 Z" /></svg><b>Verify</b> — WCAG 2.1 AA, Lighthouse, QA</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="work">
+    <div class="sec-head">
+      <span class="eyebrow"><svg class="sprig" width="14" height="14" viewBox="0 0 24 24"><path d="M12 22 V6" /><path d="M12 10 C7 10 5 6 5 3 C9 3 12 6 12 10 Z" /></svg>Selected work</span>
+      <h2>Three case studies</h2>
+    </div>
+
+    <article class="project">
+      <div class="proj-head">
+        <div>
+          <span class="proj-tag">Commerce</span>
+          <h3 class="proj-title">ShopLane</h3>
+        </div>
+        <div class="proj-stack">React · TypeScript<br/>Figma · REST APIs · CSS</div>
+      </div>
+      <div class="proj-body">
+        <div class="mock mock-shop">
+          <div class="mock-chrome"><span></span><span></span><span></span></div>
+          <div class="mock-shop" style="margin-top:4px;">
+            <div class="rail"><div></div><div></div><div style="width:50%"></div><div style="width:80%"></div></div>
+            <div>
+              <div class="grid2">
+                <div class="sw sw1"></div><div class="sw sw2"></div><div class="sw sw3"></div>
+                <div class="sw sw4"></div><div class="sw sw5"></div><div class="sw sw6"></div>
+              </div>
+              <span class="mock-cta">Add to cart</span>
+            </div>
+          </div>
+        </div>
+        <div class="proj-copy">
+          <p class="proj-brief">A 1,000+ SKU commerce experience rebuilt around discoverability — multi-facet filtering, optimistic cart updates, and skeleton states that keep the journey feeling instant.</p>
+          <ul class="approach">
+            <li><svg class="sprig" width="14" height="14" viewBox="0 0 24 24"><path d="M12 22 V6" /><path d="M12 10 C7 10 5 6 5 3 C9 3 12 6 12 10 Z" /></svg>Mapped discovery-to-checkout before touching visuals, validating filtering logic across 1,000+ products.</li>
+            <li><svg class="sprig" width="14" height="14" viewBox="0 0 24 24"><path d="M12 22 V6" /><path d="M12 10 C7 10 5 6 5 3 C9 3 12 6 12 10 Z" /></svg>Designed feedback states for search, filtering, and cart updates so every action reads as immediate.</li>
+            <li><svg class="sprig" width="14" height="14" viewBox="0 0 24 24"><path d="M12 22 V6" /><path d="M12 10 C7 10 5 6 5 3 C9 3 12 6 12 10 Z" /></svg>Specified interaction detail closely enough that the shipped build held 95+ Performance, 98 Accessibility.</li>
+          </ul>
+          <div class="proj-metrics">
+            <div><div class="n">1,000+</div><div class="l">Products filtered</div></div>
+            <div><div class="n">95+</div><div class="l">Performance</div></div>
+            <div><div class="n">98</div><div class="l">Accessibility</div></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="proj-head">
+        <div>
+          <span class="proj-tag">Architecture</span>
+          <h3 class="proj-title">Urban Craft</h3>
+        </div>
+        <div class="proj-stack">Figma · UX Research<br/>IA · Prototyping · Responsive</div>
+      </div>
+      <div class="proj-body">
+        <div class="mock mock-arch">
+          <div class="mock-chrome"><span></span><span></span><span></span></div>
+          <div class="hero-block"></div>
+          <div class="gal"><div class="g1"></div><div class="g2"></div><div class="g3"></div></div>
+        </div>
+        <div class="proj-copy">
+          <p class="proj-brief">A website for an architecture studio, rebuilt around how clients actually decide who to hire — project galleries, case studies, and a clear path to consultation.</p>
+          <ul class="approach">
+            <li><svg class="sprig" width="14" height="14" viewBox="0 0 24 24"><path d="M12 22 V6" /><path d="M12 10 C7 10 5 6 5 3 C9 3 12 6 12 10 Z" /></svg>Restructured navigation and content architecture around discoverability, services, and consultation paths.</li>
+            <li><svg class="sprig" width="14" height="14" viewBox="0 0 24 24"><path d="M12 22 V6" /><path d="M12 10 C7 10 5 6 5 3 C9 3 12 6 12 10 Z" /></svg>Designed responsive gallery, case-study, and service layouts balancing story with hierarchy.</li>
+            <li><svg class="sprig" width="14" height="14" viewBox="0 0 24 24"><path d="M12 22 V6" /><path d="M12 10 C7 10 5 6 5 3 C9 3 12 6 12 10 Z" /></svg>Built reusable nav, card, and CTA patterns, then stayed through build to protect fidelity.</li>
+          </ul>
+          <div class="proj-metrics">
+            <div><div class="n">+75%</div><div class="l">New sign-ups, Q1</div></div>
+            <div><div class="n">3</div><div class="l">Breakpoints</div></div>
+            <div><div class="n">100%</div><div class="l">Dev-matched</div></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="proj-head">
+        <div>
+          <span class="proj-tag">Education</span>
+          <h3 class="proj-title">Education Web</h3>
+        </div>
+        <div class="proj-stack">Figma · Journey Mapping<br/>Accessibility · Design Systems</div>
+      </div>
+      <div class="proj-body">
+        <div class="mock mock-edu">
+          <div class="mock-chrome"><span></span><span></span><span></span></div>
+          <div class="navrow"><span></span><span></span><span></span><span style="width:16px"></span></div>
+          <div class="cards">
+            <div class="card"><div class="stripe a"></div><div class="ln"></div><div class="ln" style="width:60%"></div></div>
+            <div class="card"><div class="stripe b"></div><div class="ln"></div><div class="ln" style="width:70%"></div></div>
+          </div>
+          <div class="stepper">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot cut"></span><span class="dot cut"></span>
+            <span style="margin-left:4px;">5 steps → 3 (‑30%)</span>
+          </div>
+        </div>
+        <div class="proj-copy">
+          <p class="proj-brief">A university web experience re-architected from real usability research — fewer steps, clearer structure, zero accessibility violations at delivery.</p>
+          <ul class="approach">
+            <li><svg class="sprig" width="14" height="14" viewBox="0 0 24 24"><path d="M12 22 V6" /><path d="M12 10 C7 10 5 6 5 3 C9 3 12 6 12 10 Z" /></svg>Ran journey mapping and usability research to locate friction, then redesigned the IA around it.</li>
+            <li><svg class="sprig" width="14" height="14" viewBox="0 0 24 24"><path d="M12 22 V6" /><path d="M12 10 C7 10 5 6 5 3 C9 3 12 6 12 10 Z" /></svg>Built and maintained a 60+ component design system — type, spacing, tokens, interaction patterns.</li>
+            <li><svg class="sprig" width="14" height="14" viewBox="0 0 24 24"><path d="M12 22 V6" /><path d="M12 10 C7 10 5 6 5 3 C9 3 12 6 12 10 Z" /></svg>Applied WCAG 2.1 AA throughout, shipping with zero reported accessibility violations.</li>
+          </ul>
+          <div class="proj-metrics">
+            <div><div class="n">‑30%</div><div class="l">Task steps</div></div>
+            <div><div class="n">60+</div><div class="l">Components</div></div>
+            <div><div class="n">0</div><div class="l">A11y issues</div></div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="block">
+    <div class="sec-head">
+      <span class="eyebrow"><svg class="sprig" width="14" height="14" viewBox="0 0 24 24"><path d="M12 22 V6" /><path d="M12 10 C7 10 5 6 5 3 C9 3 12 6 12 10 Z" /></svg>Capabilities</span>
+      <h2>What I bring to a team</h2>
+    </div>
+    <div class="cap-grid">
+      <div class="cap-cell"><h3>Research</h3><p>User interviews, usability testing, journey mapping, user flows, problem definition.</p></div>
+      <div class="cap-cell"><h3>Process</h3><p>Information architecture, wireframing, prototyping, hi-fi design, dev handoff.</p></div>
+      <div class="cap-cell"><h3>Systems</h3><p>Visual hierarchy, typography, responsive layout, design systems, components.</p></div>
+      <div class="cap-cell"><h3>Build &amp; QA</h3><p>React, TypeScript, REST APIs, WCAG 2.1 AA, Lighthouse, Git/GitHub.</p></div>
+    </div>
+  </section>
+
+  <section class="block" id="contact" style="border-top:none; padding-top:0;">
+    <div class="contact-band">
+      <div class="leaf-shape l3"></div>
+      <h2>Let's build something that lasts.</h2>
+      <p class="lead">Open to full-time product design roles and select freelance case studies. Based in the U.S., open to relocation.</p>
+      <div class="contact-grid">
+        <div><div class="lab">Email</div><a href="mailto:puliharshitha25@gmail.com">puliharshitha25@gmail.com</a></div>
+        <div><div class="lab">Phone</div><a href="tel:+14436427601">(443) 642-7601</a></div>
+        <div><div class="lab">Portfolio</div><a href="https://puliharshitha.github.io/Portfolio/" target="_blank" rel="noopener">puliharshitha.github.io</a></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Harshitha Puli — Product Design</span>
+    <span>Playful ideas · Thoughtful experiences · ✳</span>
+  </footer>
+
+</div>
